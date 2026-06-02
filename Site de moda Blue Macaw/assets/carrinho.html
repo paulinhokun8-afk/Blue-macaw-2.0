@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <a href="index.html" class="voltar">Voltar</a>
+
+    <nav>
+        <h1>Blue Macaw</h1>
+    </nav>
+
+    <div class="carrinho">
+        <h2>Seu Carrinho</h2>
+
+        <div class="itensCarrinho"></div>
+
+        <div id="itensCarrinho"></div>
+
+        <h3 id="total"></h3>
+        </div>
+
+        <script>
+
+            let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+            let area= document.getElementById("itensCarrinho");
+            let total = 0;
+
+            carrinho.forEach(produto => {
+                area.innerHTML += `
+                    <div class="card">
+                        <img src="${produto.imagem}" alt="${produto.nome}" width="200">
+                        <h3>${produto.nome}</h3>
+                        <p>R$ ${produto.preco.toFixed(2)}</p>
+                    </div>
+                `;
+                total += produto.preco;
+            });
+
+            document.getElementById("total").innerHTML = 
+            "Total: R$ " + total.toFixed(2);
+
+        </script>
+
+    </div>
+    
+</body>
+</html>
